@@ -13,10 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mateus on 21/04/2016.
- */
-
 public class YoutubeConnector {
     private YouTube youtube;
     private YouTube.Search.List query;
@@ -47,18 +43,16 @@ public class YoutubeConnector {
         try{
             SearchListResponse response = query.execute();
             List<SearchResult> results = response.getItems();
+            String teste = results.toString();
+            Log.d("Teste - Json: ", teste);
 
-            List<Video> items = new ArrayList<Video>();
+            List<Video> items = new ArrayList<>();
             for(SearchResult result:results){
                 //--
-                Log.d("Teste - Snippet:", result.getSnippet().toString());
-                Log.d("Teste - titulo", result.getSnippet().getTitle());
-                Log.d("Teste - descricao", result.getSnippet().getDescription());
-                Log.d("Teste - thumbnail", result.getSnippet().getThumbnails().getDefault().getUrl());
-
-                Log.d("Teste - JSON: " ,result.getSnippet().getTitle()
-                        +result.getSnippet().getDescription()
-                        +result.getSnippet().getThumbnails().getDefault().getUrl());
+                Log.d("Teste - Snippet: ", result.getSnippet().toString());
+                Log.d("Teste - titulo: ", result.getSnippet().getTitle());
+                Log.d("Teste - descricao: ", result.getSnippet().getDescription());
+                Log.d("Teste - thumbnail: ", result.getSnippet().getThumbnails().getDefault().getUrl());
                 //--
                 Video item = new Video();
                 item.setTitle(result.getSnippet().getTitle());
